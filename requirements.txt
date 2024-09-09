@@ -1,0 +1,7 @@
+Flask==2.0.3
+numpy==1.23.5
+matplotlib==3.7.1
+pandas==2.0.3
+scipy==1.11.2
+sympy==1.12
+transformers==4.32.0
