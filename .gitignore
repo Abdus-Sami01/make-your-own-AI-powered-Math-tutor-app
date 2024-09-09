@@ -1,0 +1,9 @@
+# Ignore environment directory
+math_app_env/
+
+# Ignore Python bytecode
+*.pyc
+
+# Ignore virtual environment directories
+venv/
+env/

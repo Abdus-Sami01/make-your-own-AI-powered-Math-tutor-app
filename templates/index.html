@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced AI Math Tutor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            font-weight: 700;
+            margin: 0.5rem 0;
+        }
+        input, select, textarea {
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 0.75rem;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            background-color: #007bff;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        .feedback-form {
+            margin-top: 2rem;
+        }
+        .feedback-form label {
+            font-weight: 700;
+        }
+        .feedback-form textarea {
+            height: 100px;
+        }
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #007bff;
+            color: white;
+            margin-top: 2rem;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Advanced AI Math Tutor</h1>
+    </header>
+    <div class="container">
+        <form action="/solve" method="post">
+            <label for="problem">Enter a math problem:</label>
+            <input type="text" id="problem" name="problem" placeholder="E.g., 2*x + 3 = 7">
+
+            <label for="operation">Choose an operation:</label>
+            <select id="operation" name="operation">
+                <option value="differentiate">Differentiate</option>
+                <option value="integrate">Integrate</option>
+                <option value="simplify">Simplify</option>
+                <option value="expand">Expand</option>
+                <option value="solve">Solve Equation</option>
+                <option value="limit">Calculate Limit</option>
+                <option value="series">Compute Series</option>
+                <option value="trigonometric">Trigonometric Functions</option>
+                <option value="identity">Trigonometric Identities</option>
+                <option value="convert_angle">Convert Angle</option>
+                <option value="statistical_summary">Statistical Summary</option>
+                <option value="hypothesis_testing">Hypothesis Testing</option>
+                <option value="plot">Plot Graph</option>
+            </select>
+
+            <label for="angle">Angle:</label>
+            <input type="number" id="angle" name="angle" step="any" placeholder="e.g., 45">
+
+            <label for="unit_from">From:</label>
+            <select id="unit_from" name="unit_from">
+                <option value="degrees">Degrees</option>
+                <option value="radians">Radians</option>
+            </select>
+
+            <label for="unit_to">To:</label>
+            <select id="unit_to" name="unit_to">
+                <option value="degrees">Degrees</option>
+                <option value="radians">Radians</option>
+            </select>
+
+            <label for="data">Data (comma-separated values):</label>
+            <textarea id="data" name="data" placeholder="E.g., 1, 2, 3, 4, 5"></textarea>
+
+            <label for="hypothesis_test">Hypothesis Test:</label>
+            <select id="hypothesis_test" name="hypothesis_test">
+                <option value="t_test">T-Test</option>
+                <option value="chi_square">Chi-Square Test</option>
+            </select>
+
+            <button type="submit">Compute</button>
+        </form>
+
+        {% if solution %}
+            <h2>Solution:</h2>
+            <p>{{ solution }}</p>
+        {% endif %}
+
+        {% if plot_url %}
+            <h2>Graph:</h2>
+            <img src="data:image/png;base64,{{plot_url}}" alt="Graph plotted">
+        {% endif %}
+
+        {% if feedback_message %}
+            <h2>{{ feedback_message }}</h2>
+        {% endif %}
+
+        <div class="feedback-form">
+            <form action="/feedback" method="post">
+                <label for="rating">Rating (1-5):</label>
+                <input type="number" id="rating" name="rating" min="1" max="5" required>
+                <br>
+                <label for="comments">Comments:</label>
+                <textarea id="comments" name="comments"></textarea>
+                <br>
+                <button type="submit">Submit Feedback</button>
+            </form>
+        </div>
+    </div>
+    <footer>
+        &copy; 2024 Tech Guy
+    </footer>
+</body>
+</html>
